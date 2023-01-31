@@ -1,13 +1,13 @@
-public class Recursion {
+public class App {
 
     public static void main(String[] args) {
-        
 
         // Remove letters (30 pts)
 
         // Instructions (Important!)
 
-        // Without using arrays or loops or regular expressions, apply recursion to remove specific letters in
+        // Without using arrays or loops or regular expressions, apply recursion to
+        // remove specific letters in
         // your full name.
 
         // 1. If the last letter of your surname is a vowel, remove all vowels in
@@ -17,7 +17,7 @@ public class Recursion {
         // consonants in your full name.
 
         // 3. Use only lowercase letters
-        
+
         // 4. Each letter should be removed one by one.
 
         // Example:
@@ -29,23 +29,33 @@ public class Recursion {
         // String fullName = "elizer ponio jr";
 
         String fullName = "anrry james alcantara manigo";
-        
+
         removeLetter(fullName);
     }
 
-    static void removeLetter(String str) { 
-        str=str.replaceAll("[aeiou]","");
-        System.out.println(str);
+    static void removeLetter(String str) {
+
+        extractConsonant(str, "");
+
     }
-    public static String removeVowels(String str) {
-        if (str.length() == 0) {
-            return str;
+
+    public static String extractConsonant(String s, String previous) {
+        if (s.length() == 0) {
+            return s;
         }
-        char c = str.charAt(0);
-        if (c == 'a' || c == 'e' || c == 'i' || c == 'o' || c == 'u') {
-            return removeVowels(str.substring(1));
-        } else {
-            return c+removeVowels(str.substring(1));
+        char c = s.charAt(0);
+        switch (c) {
+            case 'a':
+            case 'e':
+            case 'i':
+            case 'o':
+            case 'u':
+          
+                System.out.println(previous + s.substring(1));  
+                return extractConsonant(s.substring(1), previous);
+            default:
+                return c + extractConsonant(s.substring(1), previous+c);
+
         }
     }
 }
